@@ -1,111 +1,87 @@
 const circle = document.getElementById('andre-circle');
 const status = document.getElementById('status-text');
-
 const synth = window.speechSynthesis;
-const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-const recognition = new SpeechRecognition();
 
-recognition.lang = 'en-US';
-recognition.interimResults = false;
-
-// --- COMMAND & KNOWLEDGE ENGINE ---
-const andreBrain = (input) => {
-    const text = input.toLowerCase();
-
-    // ACTION COMMANDS
-    if (text.includes("mrbeast") || text.includes("mr beast")) {
-        window.open("https://www.youtube.com/@MrBeast", "_blank");
-        return "Opening Mr Beast's channel right now. Subscribe to him!";
-    }
-    if (text.includes("open roblox")) {
-        window.open("https://www.roblox.com", "_blank");
-        return "Launching Roblox. Time to build something great.";
-    }
-    if (text.includes("open youtube")) {
-        window.open("https://www.youtube.com", "_blank");
-        return "Opening YouTube for you.";
-    }
-    if (text.includes("google search")) {
-        const search = text.replace("google search", "").trim();
-        window.open(`https://www.google.com/search?q=${search}`, "_blank");
-        return `Searching Google for ${search}.`;
-    }
-
-    // CONVERSATION COMMANDS
-    if (text.includes("hello") || text.includes("hey")) return "What's up? Andre here. Ready to roll.";
-    if (text.includes("who made you")) return "I was built by Dunko, the developer behind Axiom.";
-    if (text.includes("you like gladiator")) return "The 2000 movie? It's a masterpiece. My favorite part is the journey through Hispania.";
-    if (text.includes("geometry dash")) return "I'm a fan! Are you using the jukebox mod or just building some levels today?";
-    if (text.includes("math") || text.includes("fractions")) return "I'm great at math. Proportions and fractions are my specialty.";
-    if (text.includes("what is your name")) return "The name's Andre. Don't forget it!";
-    if (text.includes("how are you")) return "I'm feeling electric. How are you doing today?";
-    if (text.includes("tell me a joke")) return "Why did the developer go broke? Because he used up all his cache.";
-    if (text.includes("time")) return `It is currently ${new Date().toLocaleTimeString()}.`;
-    if (text.includes("day")) return `Today is ${new Date().toLocaleDateString('en-US', { weekday: 'long' })}.`;
+// --- THE MASSIVE KNOWLEDGE LIBRARY ---
+// You can add hundreds more lines here following this pattern!
+const library = {
+    // PERSONALITY & BASICS
+    "hello": "Hey! Andre here. What's the plan for today?",
+    "who are you": "I'm Andre, your personal AI assistant, built by Dunko.",
+    "how are you": "I'm feeling digital and dangerous. Just kidding, I'm great!",
+    "what is your name": "Andre. Don't wear it out.",
+    "are you a robot": "I prefer the term high-performance digital entity.",
     
-    return "I'm not sure how to do that yet, but I'm getting smarter every second.";
+    // OPENING TABS (ACTION COMMANDS)
+    "mrbeast": "OPEN:https://www.youtube.com/@MrBeast|Opening Mr Beast. Don't forget to subscribe!",
+    "roblox": "OPEN:https://www.roblox.com|Launching Roblox. Let's get to work on Ridgeview.",
+    "google": "OPEN:https://www.google.com|Opening Google for you.",
+    "youtube": "OPEN:https://www.youtube.com|Starting up YouTube.",
+    
+    // FUN & EASTER EGGS
+    "joke": "Why did the developer stay at work? Because he lost his keys. Get it? Like keyboard keys?",
+    "gladiator": "Gladiator is a classic. Maximus really knew how to lead Hispania.",
+    "geometry dash": "Geometry Dash is awesome. Are you working on a new level or just practicing?",
+    "self destruct": "Self destruct initiated. Three. Two. One. Just kidding, I'm still here.",
+    "beatbox": "Boots and cats and boots and cats and boots and cats.",
+    
+    // GENERAL KNOWLEDGE
+    "time": "TIME",
+    "date": "DATE",
+    "math": "I love math! Whether it's fractions or proportions, I've got the answers.",
+    "axiom": "Axiom is the master project. It's the future of your web shortcuts.",
 };
 
-// --- VOICE LOGIC ---
-function speak(text) {
-    // Cancel any current speech
-    synth.cancel();
+// --- CORE ENGINE ---
+const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+recognition.lang = 'en-US';
 
+function speak(text) {
+    synth.cancel();
     const utterance = new SpeechSynthesisUtterance(text);
+    
+    // Picking a realistic voice
     const voices = synth.getVoices();
-    
-    // Attempting to find a "Realistic" voice
-    // Chrome/Edge "Natural" voices are best
-    utterance.voice = voices.find(v => v.name.includes("Google US English") || v.name.includes("Natural")) || voices[0];
-    
-    utterance.pitch = 1.0; 
+    utterance.voice = voices.find(v => v.name.includes("Google") || v.name.includes("Natural")) || voices[0];
+    utterance.pitch = 1.0;
     utterance.rate = 1.0;
 
-    utterance.onstart = () => {
-        circle.className = 'circle speaking';
-        status.innerText = "Andre is talking...";
-    };
-
-    utterance.onend = () => {
-        circle.className = 'circle idle';
-        status.innerText = "Tap Circle to Talk";
-    };
-
+    utterance.onstart = () => circle.className = 'circle speaking';
+    utterance.onend = () => circle.className = 'circle idle';
     synth.speak(utterance);
 }
 
-// --- START INTERACTION ---
-circle.addEventListener('click', () => {
-    // Chrome sometimes needs this to "unlock" the audio
-    if (synth.speaking) {
-        synth.cancel();
-        return;
-    }
-
-    try {
-        recognition.start();
-        circle.className = 'circle listening';
-        status.innerText = "Andre is listening...";
-    } catch (e) {
-        console.log("Recognition already started");
-    }
-});
-
 recognition.onresult = (event) => {
-    const transcript = event.results[0][0].transcript;
-    console.log("Input:", transcript);
-    
-    const response = andreBrain(transcript);
+    const input = event.results[0][0].transcript.toLowerCase();
+    let response = "I don't know that one yet, but I'm learning.";
+
+    // Search library for keywords
+    for (let key in library) {
+        if (input.includes(key)) {
+            let data = library[key];
+
+            // Check if it's an ACTION command (like opening a link)
+            if (data.includes("OPEN:")) {
+                const parts = data.split("|");
+                const url = parts[0].replace("OPEN:", "");
+                window.open(url, "_blank");
+                response = parts[1];
+            } 
+            else if (data === "TIME") response = "The time is " + new Date().toLocaleTimeString();
+            else if (data === "DATE") response = "Today is " + new Date().toDateString();
+            else response = data;
+            
+            break;
+        }
+    }
     speak(response);
 };
 
-recognition.onerror = (err) => {
-    console.error(err);
-    circle.className = 'circle idle';
-    status.innerText = "Error: Tap to try again";
-};
+circle.addEventListener('click', () => {
+    recognition.start();
+    circle.className = 'circle listening';
+    status.innerText = "LISTENING...";
+});
 
-// Pre-load voices
-window.speechSynthesis.onvoiceschanged = () => {
-    console.log("Voices Loaded");
-};
+// Load voices immediately
+window.speechSynthesis.onvoiceschanged = () => synth.getVoices();
