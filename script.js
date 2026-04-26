@@ -14,22 +14,28 @@ const library = {
     
     // OPENING TABS (ACTION COMMANDS)
     "mrbeast": "OPEN:https://www.youtube.com/@MrBeast|Opening Mr Beast. Don't forget to subscribe!",
-    "roblox": "OPEN:https://www.roblox.com|Launching Roblox. Let's get to work on Ridgeview.",
+    "roblox": "OPEN:https://www.roblox.com|Launching Roblox.",
     "google": "OPEN:https://www.google.com|Opening Google for you.",
     "youtube": "OPEN:https://www.youtube.com|Starting up YouTube.",
+    "github": "OPEN:https://www.github.com|Opening Github for you.",
+    "open mrbeast youtube channel": "OPEN:https://www.youtube.com/@MrBeast|Opening Mr Beast. Don't forget to subscribe!",
+    "hey andre, open roblox": "OPEN:https://www.roblox.com|Opening Roblox.",
+    "hey andre, open google": "OPEN:https://www.google.com|Opening Google, search whateer you would like!",
+    "hey andre, open github": "OPEN:https//www.github.com|Here you are!",
     
     // FUN & EASTER EGGS
-    "joke": "Why did the developer stay at work? Because he lost his keys. Get it? Like keyboard keys?",
-    "gladiator": "Gladiator is a classic. Maximus really knew how to lead Hispania.",
-    "geometry dash": "Geometry Dash is awesome. Are you working on a new level or just practicing?",
-    "self destruct": "Self destruct initiated. Three. Two. One. Just kidding, I'm still here.",
-    "beatbox": "Boots and cats and boots and cats and boots and cats.",
+    "hey andre, tell me a joke": "Why did the developer stay at work? Because he lost his keys. Get it? Like keyboard keys?",
+    "hey andre, what is gladiator": "Gladiator is a classic. Maximus really knew how to lead Hispania.",
+    "hey andre, what is geometry dash": "Geometry Dash is awesome. Are you working on a new level or just practicing?",
+    "hey andre, self destruct": "Self destruct initiated. Three. Two. One. Just kidding, I'm still here.",
+    "hey andre, beatbox": "Boots and cats and boots and cats and boots and cats.",
+    "hey andre, open ChatGPT": "Are you stupid or something? You are already using a freaking AI!",
     
     // GENERAL KNOWLEDGE
     "time": "TIME",
     "date": "DATE",
     "math": "I love math! Whether it's fractions or proportions, I've got the answers.",
-    "axiom": "Axiom is the master project. It's the future of your web shortcuts.",
+    "axiom": "What is that?"
 };
 
 // --- CORE ENGINE ---
