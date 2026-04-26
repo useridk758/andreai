@@ -3,24 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andre AI | Axiom</title>
+    <title>Andre | Axiom</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="chat-container">
-        <header>
-            <h1>Andre AI</h1>
-            <p>Online & Ready</p>
-        </header>
-        
-        <div id="chat-box" class="chat-box">
-            <div class="message ai-message">Hello! I'm Andre. How can I help you today?</div>
-        </div>
-
-        <div class="input-area">
-            <input type="text" id="user-input" placeholder="Type a message..." autocomplete="off">
-            <button id="send-btn">Send</button>
-        </div>
+    <div class="voice-interface">
+        <div id="andre-circle" class="circle idle"></div>
+        <h1 id="status-text">Tap to wake Andre</h1>
     </div>
     <script src="script.js"></script>
 </body>
