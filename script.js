@@ -11,6 +11,10 @@ const library = {
     "how are you": "I'm feeling digital and dangerous. Just kidding, I'm great!",
     "what is your name": "Andre. Don't wear it out.",
     "are you a robot": "I prefer the term high-performance digital entity.",
+    "hey andre": "Yo, whats up?",
+    "fuck you andre": "No, fuck you!",
+    "I am sorry andre": "You better be!",
+    
     
     // OPENING TABS (ACTION COMMANDS)
     "mrbeast": "OPEN:https://www.youtube.com/@MrBeast|Opening Mr Beast. Don't forget to subscribe!",
