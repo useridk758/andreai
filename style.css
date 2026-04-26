@@ -1,57 +1,55 @@
 body {
-    background-color: #000;
+    background-color: #050505;
     margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     overflow: hidden;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Segoe UI', sans-serif;
 }
 
-.voice-interface {
-    text-align: center;
-}
+.voice-interface { text-align: center; }
 
 .circle {
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 250px;
     border-radius: 50%;
-    background: radial-gradient(circle, #00ff88 0%, #004422 100%);
-    margin: 0 auto 30px;
-    transition: all 0.5s ease;
-    box-shadow: 0 0 50px rgba(0, 255, 136, 0.2);
+    background: radial-gradient(circle, #ffffff 0%, #00ff88 50%, #000 100%);
+    margin: 0 auto 40px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 0 40px rgba(0, 255, 136, 0.3);
     cursor: pointer;
+    border: 4px solid rgba(255, 255, 255, 0.1);
 }
 
-/* When Andre is listening to you */
 .circle.listening {
-    animation: ripple 1.5s infinite;
-    background: radial-gradient(circle, #0088ff 0%, #002244 100%);
-    box-shadow: 0 0 80px rgba(0, 136, 255, 0.6);
+    animation: breathe 1.2s infinite ease-in-out;
+    background: radial-gradient(circle, #ffffff 0%, #0088ff 50%, #000 100%);
+    box-shadow: 0 0 100px rgba(0, 136, 255, 0.7);
 }
 
-/* When Andre is speaking back */
 .circle.speaking {
-    animation: pulse 0.8s infinite alternate;
-    box-shadow: 0 0 100px rgba(0, 255, 136, 0.8);
+    animation: vibrate 0.2s infinite;
+    box-shadow: 0 0 120px rgba(0, 255, 136, 0.9);
 }
 
-@keyframes pulse {
-    from { transform: scale(1); }
-    to { transform: scale(1.15); }
+@keyframes breathe {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.8; }
 }
 
-@keyframes ripple {
-    0% { box-shadow: 0 0 0 0 rgba(0, 136, 255, 0.4); }
-    70% { box-shadow: 0 0 0 40px rgba(0, 136, 255, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(0, 136, 255, 0); }
+@keyframes vibrate {
+    0% { transform: translate(0,0) scale(1.05); }
+    50% { transform: translate(2px, -2px) scale(1.07); }
+    100% { transform: translate(-2px, 2px) scale(1.05); }
 }
 
 h1 {
     color: white;
-    font-size: 1.2rem;
-    letter-spacing: 2px;
+    font-weight: 300;
+    letter-spacing: 4px;
+    font-size: 1rem;
     text-transform: uppercase;
-    opacity: 0.7;
 }
