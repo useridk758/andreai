@@ -1,55 +1,10 @@
-body {
-    background-color: #050505;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    overflow: hidden;
-    font-family: 'Segoe UI', sans-serif;
-}
-
-.voice-interface { text-align: center; }
-
+body { background: #000; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: sans-serif; }
 .circle {
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    background: radial-gradient(circle, #ffffff 0%, #00ff88 50%, #000 100%);
-    margin: 0 auto 40px;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 0 40px rgba(0, 255, 136, 0.3);
-    cursor: pointer;
-    border: 4px solid rgba(255, 255, 255, 0.1);
+    width: 200px; height: 200px; border-radius: 50%;
+    background: radial-gradient(circle, #00ff88, #000);
+    transition: 0.3s; cursor: pointer; box-shadow: 0 0 30px #00ff8855;
 }
-
-.circle.listening {
-    animation: breathe 1.2s infinite ease-in-out;
-    background: radial-gradient(circle, #ffffff 0%, #0088ff 50%, #000 100%);
-    box-shadow: 0 0 100px rgba(0, 136, 255, 0.7);
-}
-
-.circle.speaking {
-    animation: vibrate 0.2s infinite;
-    box-shadow: 0 0 120px rgba(0, 255, 136, 0.9);
-}
-
-@keyframes breathe {
-    0% { transform: scale(1); opacity: 0.8; }
-    50% { transform: scale(1.1); opacity: 1; }
-    100% { transform: scale(1); opacity: 0.8; }
-}
-
-@keyframes vibrate {
-    0% { transform: translate(0,0) scale(1.05); }
-    50% { transform: translate(2px, -2px) scale(1.07); }
-    100% { transform: translate(-2px, 2px) scale(1.05); }
-}
-
-h1 {
-    color: white;
-    font-weight: 300;
-    letter-spacing: 4px;
-    font-size: 1rem;
-    text-transform: uppercase;
-}
+.circle.speaking { animation: pulse 0.5s infinite alternate; box-shadow: 0 0 60px #00ff88; }
+.circle.listening { background: radial-gradient(circle, #0088ff, #000); box-shadow: 0 0 60px #0088ff; }
+@keyframes pulse { from { transform: scale(1); } to { transform: scale(1.1); } }
+h1 { color: white; margin-top: 30px; text-align: center; font-size: 14px; letter-spacing: 2px; }
