@@ -1,86 +1,57 @@
 body {
-    background-color: #121212;
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #000;
+    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
-}
-
-.chat-container {
-    width: 400px;
-    height: 600px;
-    background: #1e1e1e;
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    font-family: 'Inter', sans-serif;
 }
 
-header {
-    background: #2d2d2d;
-    padding: 15px;
+.voice-interface {
     text-align: center;
-    border-bottom: 1px solid #333;
 }
 
-header h1 { margin: 0; font-size: 1.2rem; color: #00ff88; }
-header p { margin: 0; font-size: 0.8rem; opacity: 0.6; }
-
-.chat-box {
-    flex: 1;
-    padding: 20px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.message {
-    padding: 10px 15px;
-    border-radius: 15px;
-    max-width: 80%;
-    font-size: 0.9rem;
-}
-
-.ai-message {
-    background: #333;
-    align-self: flex-start;
-    border-bottom-left-radius: 2px;
-}
-
-.user-message {
-    background: #00ff88;
-    color: black;
-    align-self: flex-end;
-    border-bottom-right-radius: 2px;
-}
-
-.input-area {
-    padding: 15px;
-    background: #2d2d2d;
-    display: flex;
-    gap: 10px;
-}
-
-input {
-    flex: 1;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    background: #3d3d3d;
-    color: white;
-}
-
-button {
-    background: #00ff88;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
+.circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #00ff88 0%, #004422 100%);
+    margin: 0 auto 30px;
+    transition: all 0.5s ease;
+    box-shadow: 0 0 50px rgba(0, 255, 136, 0.2);
     cursor: pointer;
-    font-weight: bold;
+}
+
+/* When Andre is listening to you */
+.circle.listening {
+    animation: ripple 1.5s infinite;
+    background: radial-gradient(circle, #0088ff 0%, #002244 100%);
+    box-shadow: 0 0 80px rgba(0, 136, 255, 0.6);
+}
+
+/* When Andre is speaking back */
+.circle.speaking {
+    animation: pulse 0.8s infinite alternate;
+    box-shadow: 0 0 100px rgba(0, 255, 136, 0.8);
+}
+
+@keyframes pulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.15); }
+}
+
+@keyframes ripple {
+    0% { box-shadow: 0 0 0 0 rgba(0, 136, 255, 0.4); }
+    70% { box-shadow: 0 0 0 40px rgba(0, 136, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 136, 255, 0); }
+}
+
+h1 {
+    color: white;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.7;
 }
