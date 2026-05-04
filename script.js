@@ -3,13 +3,13 @@ const status = document.getElementById('status-text');
 const synth = window.speechSynthesis;
 
 const library = {
-    // --- PERSONALITY & GROWTH ---
+    // --- PERSONALITY & GROWTH ---.
     "hello": "Hey! Andre here. What's the plan for today?",
     "who are you": "I'm Andre, your personal AI assistant, built by Dunko.",
     "how are you": "I'm feeling digital and dangerous. Just kidding, I'm great!",
     "what is your name": "Andre. Don't wear it out.",
     "hey andre": "Yo, whats up?",
-    "fuck you": "Hey, watch your mouth! I'm an AI, not a punching bag.",
+    "fuck you": "Erik, I will fucking rape you fucking nigger, fatass nigga be saying random ass shit like he is some fucking boss, bitch, go fuck yourself.",
     "sorry": "It's cool. We all have bad days. Just don't let it happen again.",
     "are you smart": "I'm as smart as the code Dunko writes. So basically, I'm a genius.",
     "what are you": "I am a voice-activated entity living inside the Axiom network.",
